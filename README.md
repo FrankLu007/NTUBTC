@@ -14,6 +14,8 @@
 - [Others](#Others)
 - [Links](#Links)
 
+---
+
 ## Introduction
 
 This is an extension of project 1. In project 1, we proposed an idea using NFT for trading the models, and here, we continue to establish the stock certificate system for the business of model trading. Not only can this system be deployed in a company to issue their own stocks, but also served as a method to handle the ownership transfer of a model when there are lots of authors or owners.
@@ -23,6 +25,8 @@ The smart contract is designed for the stock issuing, transaction and redemption
 A company holder will initialize the total stocks and number of confirmations required, which will be a list of addresses of co-founders or co-owners. All the co-founders have the permission to **issue stocks**, and all other co-founders should **confirm** to complete the transaction. We also allow the company to **redeem** the stock issued and also implement the **mint** and **burn** function to adjust the stock shares in the company.
 
 The following experiments are carried out in the testnet. It can also be migrated to the real net like Polygon.
+
+---
 
 ## Motivation
 
@@ -34,9 +38,13 @@ The system provides the following properties
 
 With these properties, stock certification can be perfectly done using the system and provide the companies and clients a better platform for stock transactions.
 
+---
+
 ## Implementation
 
 In this section, we will go through all the functions and show the steps to trigger them. Here, we use [remix IDE](https://remix.ethereum.org/) to demostrate the stock certificate system.
+
+---
 
 ### System Deployment
 
@@ -46,6 +54,14 @@ In the beginning, the system provide a fucntion for company to deploy their stoc
 
 Before the execution of all other transactions, this step has to be performed first. 
 
+##### Parameters
+
+- `_DIRECTORS`: a list of directors’ address. It cannot be modified after deployment.
+- `_NUMCONFIRMATIONREQUIRED`: the minimum number of comfirmation to issue stocks.
+- `_ORIGINALSHARE`: initial stock count.
+
+---
+
 ### Stock Issuing
 
 <img width="250px" src="https://i.imgur.com/eo8Mqnq.png">
@@ -54,9 +70,20 @@ After the deployment of the system, the directors in the company can start to is
 
 The stocks are not issued until the number of confirmations is enough.
 
+##### Parameters
+
+- `_destination`: the address of the receiver.
+- `_value`: number of stocks to trade.
+
 <img width="250px" src="https://i.imgur.com/AZQIsCh.png">
 
 The directors should confirm through the interface shown above with the target index of the transaction. When the number of confirmations is enough, the transaction can therefore be executed and the client can receive the issued share.
+
+##### Parameters
+
+- `index`: the indexed number of the transaction.
+
+---
 
 ### Stock Transaction
 
@@ -66,9 +93,29 @@ This interface is for clients, namely traders. They can specify the amount of sh
 
 The implementation of this function is already in ERC1155.
 
+##### Parameters
+
+- `from`: address of the seller.
+- `to`: address of the buyer.
+- `id`: unused parameter. 
+- `amount`: number of stocks.
+- `data`: unused parameter.
+
+---
+
 ### Stock Redemption
 
 This function serves a method for the stock redemption. It reuses the functionality of the stock transaction with a contraint which requires the target receiver to be one of the directors.
+
+##### Parameters
+
+- `from`: address of the seller.
+- `to`: address of the buyer.
+- `id`: unused parameter. 
+- `amount`: number of stocks.
+- `data`: unused parameter.
+
+---
 
 ## Others
 
@@ -78,6 +125,8 @@ We also provide two other functions.
 	- Increase the stocks in the company in case there isn't enough
 - burnShare
 	- Decrease the stocks in the company. It is called manually by directors after the stock redemption.
+
+---
 
 ## Links
 
