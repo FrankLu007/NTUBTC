@@ -1,8 +1,6 @@
 # Stock certificate system maunual
 
-<img width="350px" src="https://i.imgur.com/WmUdBi0.png">
-
-<img width="300px" src="https://i.imgur.com/iUl6baU.png">
+<img width="300px" src="https://i.imgur.com/zLwc4MF.png">
 
 - [Introduction](#Introduction)
 - [Motivation](#Motivation)
@@ -11,6 +9,7 @@
 	- [Stock Issuing](#Stock-Issuing)
 	- [Stock Transaction](#Stock-Transaction)
 	- [Stock Redemption](#Stock-Redemption)
+- [Screen Shot](#Screen-Shot)
 - [Others](#Others)
 - [Links](#Links)
 
@@ -114,6 +113,12 @@ This function serves a method for the stock redemption. It reuses the functional
 - `id`: unused parameter. 
 - `amount`: number of stocks.
 - `data`: unused parameter.
+
+---
+
+## Screen Shot
+
+<img width="300px" src="https://i.imgur.com/iUl6baU.png">
 
 ---
 
